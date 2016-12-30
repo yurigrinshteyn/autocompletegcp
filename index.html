@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>jQuery UI Autocomplete - Scrollable results</title>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <style>
+  .ui-autocomplete {
+    max-height: 5555500px;
+    overflow-y: auto;
+    /* prevent horizontal scrollbar */
+    overflow-x: hidden;
+  }
+  /* IE 6 doesn't support max-height
+   * we use height instead, but this forces the menu to always be this tall
+   */
+  * html .ui-autocomplete {
+    height: 5000px;
+  }
+  </style>
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script src="jquery.autocomplete.js"></script>
+  <script src="datastore.js"></script>
+  <script>
+  $( function() {
+    var availableProducts = [
+      "ActionScript",
+      "AppleScript",
+      "Scheme"
+    ];
+    $( "#tags" ).autocomplete({
+      source: "autocomplete",
+      minLength: 2,
+      select: function( event, ui ) {
+        console.log( "Selected: " + ui.item.value );
+      }
+    });
+  } );
+  </script>
+</head>
+<body>
+<div class="ui-widget">
+  <label for="tags">Tags: </label>
+  <input id="tags">
+</div>
+</body>
+</html>

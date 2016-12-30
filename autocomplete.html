@@ -1,0 +1,51 @@
+<html>
+<head>
+<title>Autocomplete example</title>
+
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <script>
+// code for autocomplete starts here
+        $(function () {
+            var getData = function (request, response) {
+                $.getJSON(
+                        //the JSON URL here -
+                        "http://gd.geobytes.com/AutoCompleteCity?callback=?&q=" + request.term,
+                        function (data) {
+                            response(data);
+                        });
+            };
+
+            var selectItem = function (event, ui) {
+                $("#myText").val(ui.item.value);
+                return false;
+            }
+
+            $("#myText").autocomplete({
+                //source: ["australia", "austria", "antartica", "argentina", "algeria"],
+                source: getData,
+                select: selectItem,
+                minLength: 2,
+                change: function() {
+                    $("#myText").val("").css("display", 2);
+                }
+            });
+        });
+        //auto complete
+    </script>
+
+</head>
+
+
+
+
+
+<body>
+<input id="myText" />
+</body>
+
+
+
+
+</html>
